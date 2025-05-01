@@ -1,0 +1,19 @@
+{
+    "name": "hp/scandiweb_test_project",
+    "autoload": {
+        "psr-4": {
+            "Src\\": "src/",
+            "App\\":"app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Mohammed Fathy",
+            "email": "mohammed1fathy1@gmail.com"
+        }
+    ],
+    "require": {
+        "symfony/var-dumper": "^7.2",
+        "vlucas/phpdotenv": "^5.6"
+    }
+}

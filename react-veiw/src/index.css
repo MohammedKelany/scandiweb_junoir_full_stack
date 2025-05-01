@@ -1,0 +1,115 @@
+:root {
+  --primary: #5ECE7B;
+  --primary-hover: hsl(136, 53%, 65%);
+  --color: #1D1F22;
+  --second-color: #8D8F9A;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Raleway", Arial, sans-serif;
+  font-optical-sizing: auto;
+  box-sizing: border-box;
+  color: #213547;
+  font-weight: 400;
+  font-style: normal;
+  color: var(--color);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 120%;
+  letter-spacing: 0px;
+}
+
+.header {
+  display: flex;
+  width: 100svw;
+  background-color: white;
+  position: fixed;
+  height: 80px;
+  top: 0;
+}
+
+.container {
+  width: 75dvw;
+  margin: 0 auto;
+}
+
+@media (max-width:780px) {
+  .container {
+    width: 90dvw;
+    margin: 0 auto;
+  }
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+header .header-navs {
+  display: flex;
+  height: 100%;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+
+header .header-navs a {
+  display: flex;
+  text-decoration: none;
+  height: 100%;
+  padding: 0 20px;
+  align-items: center;
+}
+
+header .cart {
+  position: relative;
+  height: 100%;
+  width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  cursor: pointer;
+}
+
+header .cart-number {
+  position: absolute;
+  top: 25%;
+  right: 10%;
+  width: 18px;
+  height: 18px;
+  border-radius: 9px;
+  font-weight: 700;
+  font-size: 14px;
+  color: white;
+  background-color: var(--color);
+  text-align: center;
+}
+
+header a:focus {
+  color: var(--primary);
+  border-bottom: 2px solid var(--primary);
+}
+
+.page-content {
+  margin-top: 120px;
+}
+
+.category-title {
+  font-family: Raleway;
+  font-weight: 400;
+  font-size: 42px;
+  line-height: 160%;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 30px;
+  padding-bottom: 30px;
+}
