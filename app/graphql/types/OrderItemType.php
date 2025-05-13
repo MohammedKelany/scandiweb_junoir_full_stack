@@ -3,7 +3,6 @@
 namespace App\graphql\types;
 
 use App\graphql\GraphQLTypes;
-use GraphQL\GraphQL;
 use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\Type;
 

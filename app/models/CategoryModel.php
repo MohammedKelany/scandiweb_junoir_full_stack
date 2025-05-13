@@ -7,7 +7,6 @@ use Src\Database;
 
 class CategoryModel
 {
-
     public static function getAll(Database $db): array
     {
         $statement = $db->prepare("SELECT * FROM categories");

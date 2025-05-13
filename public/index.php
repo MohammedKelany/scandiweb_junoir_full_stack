@@ -15,9 +15,9 @@ header("Access-Control-Allow-Headers:*");
 $env = Dotenv::createImmutable(base_path());
 $env->load();
 
-
-
-Application::$app = new Application((new Config())->DB_CONFIG);
+Application::$app = new Application(
+    (new Config())->DB_CONFIG
+);
 
 // //For Seeding The Database 
 // Seeder::seed();

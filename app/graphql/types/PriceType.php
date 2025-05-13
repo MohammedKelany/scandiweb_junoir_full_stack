@@ -9,10 +9,8 @@ use PDO;
 
 class PriceType extends ObjectType
 {
-
     public function __construct()
     {
-
         $config = [
             'fields' => [
                 'amount' => Type::nonNull(Type::float()),

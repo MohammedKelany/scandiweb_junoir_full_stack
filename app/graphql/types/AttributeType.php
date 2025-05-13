@@ -7,10 +7,6 @@ use GraphQL\Type\Definition\Type;
 
 class AttributeType extends ObjectType
 {
-    public int $id;
-    public string $displayValue;
-    public string $value;
-
     public function __construct()
     {
         $config = [

@@ -7,7 +7,6 @@ use Src\Database;
 
 class AttributeSetModel
 {
-
     public static function getById($product, Database $db): array
     {
         $setStmt = $db->prepare("SELECT * FROM attribute_sets WHERE product_id = :product_id");

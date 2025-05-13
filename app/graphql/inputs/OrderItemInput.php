@@ -10,13 +10,14 @@ class OrderItemInput extends InputObjectType
 {
     public function __construct()
     {
-        parent::__construct([
+        $config = [
             'name' => 'OrderItemInput',
             'fields' => [
                 'productId' => Type::nonNull(Type::string()),
                 'quantity' => Type::nonNull(Type::int()),
                 'productAttributes' => Type::nonNull(Type::listOf(Type::nonNull(GraphQLTypes::attributeSetInput()))),
             ],
-        ]);
+        ];
+        parent::__construct($config);
     }
 }

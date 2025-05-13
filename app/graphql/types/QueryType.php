@@ -11,7 +11,6 @@ use GraphQL\Type\Definition\Type;
 
 class QueryType
 {
-
     public static function handleQueryType()
     {
         return new ObjectType([

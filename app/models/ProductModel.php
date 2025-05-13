@@ -8,7 +8,6 @@ use Src\Database;
 
 class ProductModel
 {
-
     public static function getAll(Database $db): array
     {
         $statement = $db->prepare("SELECT * FROM products");
@@ -24,7 +23,7 @@ class ProductModel
         $statement->execute();
         $product = $statement->fetch(PDO::FETCH_ASSOC);
         if (!$product) {
-            throw new  Exception("Product with this id doesn't Exist !!", 404);
+            throw new Exception("Product with this id doesn't Exist !!", 404);
         } else {
             return $product;
         }

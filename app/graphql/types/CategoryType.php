@@ -14,11 +14,11 @@ class CategoryType extends ObjectType
             'fields' => [
                 'id' => [
                     'type' => Type::nonNull(Type::id()),
-                    'resolve' => fn($cat) => $cat["id"],
+                    'resolve' => fn ($cat) => $cat["id"],
                 ],
                 'name' => [
                     'type' => Type::nonNull(Type::string()),
-                    'resolve' => fn($cat) => $cat["name"],
+                    'resolve' => fn ($cat) => $cat["name"],
                 ],
             ],
         ];

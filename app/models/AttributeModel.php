@@ -7,7 +7,6 @@ use Src\Database;
 
 class AttributeModel
 {
-
     public static function getById($set, Database $db): array
     {
         $setStmt = $db->prepare(
