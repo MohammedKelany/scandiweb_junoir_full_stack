@@ -3,11 +3,12 @@
 namespace Src;
 
 use PDO;
+use  Migration;
 
 class Database
 {
 
-    public PDO $pdo;
+    protected PDO $pdo;
 
     public function __construct($config)
     {
@@ -18,6 +19,15 @@ class Database
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
+    public function prepare(string $sql)
+    {
+        return $this->pdo->prepare($sql);
+    }
+    public function getLastInsertedId()
+    {
+        return $this->pdo->lastInsertId();
+    }
+
     public function applyMigrations()
     {
         $this->createMigrationsTable();
@@ -26,12 +36,12 @@ class Database
         $toApplyMigrations = array_diff($files, $appliedMigrations);
         $newMigrations = [];
         foreach ($toApplyMigrations as $migration) {
-            if ($migration === "." || $migration === "..") {
+            if ($migration === "." || $migration === ".." || $migration === "MigrationInterface.php") {
                 continue;
             }
             require_once base_path() . "migrations/" . $migration;
             $className = pathinfo($migration, PATHINFO_FILENAME);
-            $instanse = new $className();
+            $instanse = new ("\Migration\\" . $className);
             $this->log("Appling Migration $migration");
             $instanse->up();
             $this->log("Applied Migration $migration");
@@ -43,6 +53,7 @@ class Database
             echo "All Migrations Are Added";
         }
     }
+
     public function createMigrationsTable()
     {
         $this->pdo->exec(
@@ -55,6 +66,7 @@ class Database
         "
         );
     }
+
     public function getAppliedMigrations()
     {
         $statement = $this->pdo->prepare("SELECT migration from migrations");
@@ -62,12 +74,14 @@ class Database
         $migrations = $statement->fetchAll(PDO::FETCH_COLUMN);
         return $migrations;
     }
+
     public function saveNewMigrations($migrations)
     {
         $str = implode(",", array_map(fn($m) => "('$m')", $migrations));
         $statement = $this->pdo->prepare("INSERT INTO migrations(migration) VALUES$str;");
         $statement->execute();
     }
+
     public function log($message)
     {
         echo "[ " . date("Y/m/d h:i:s") . " ] " . $message . PHP_EOL;

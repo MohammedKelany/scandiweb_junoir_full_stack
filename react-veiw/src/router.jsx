@@ -1,7 +1,7 @@
 import { Navigate, createBrowserRouter } from 'react-router-dom'
-import { Layout } from './Layout';
-import { CategoryPage } from './CategoryPage';
-import ProductDetails from './Components/ProductDetails/ProductDetails';
+import { Layout } from './Components/Layout/Layout';
+import { CategoryPage } from './Components/Pages/CategoryPage';
+import ProductDetails from './Components/Pages/ProductDetails/ProductDetails';
 
 
 const router = createBrowserRouter([

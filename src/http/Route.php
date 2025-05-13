@@ -2,6 +2,8 @@
 
 namespace Src\http;
 
+use Src\Application;
+
 class Route
 {
 
@@ -36,9 +38,8 @@ class Route
                 "error" => "This is not valid Route"
             ];
         } else if (is_array($action)) {
-            app()->controller = new $action[0];
+            $controller = new $action[0];
             $action = $action[1];
-            $controller = app()->controller;
             return call_user_func_array([$controller, $action], $args);
         }
     }

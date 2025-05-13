@@ -33,4 +33,8 @@ class Request
     {
         return $this->method() === "post";
     }
+    public function isGet()
+    {
+        return $this->method() === "get";
+    }
 }

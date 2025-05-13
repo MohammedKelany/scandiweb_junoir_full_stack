@@ -1,0 +1,124 @@
+.product-attributes {
+    display: flex;
+    flex-direction: column;
+    padding: 0 20px;
+}
+
+.gap {
+    margin: 10px 0;
+}
+
+.product-attributes .product-title {
+    font-weight: normal;
+    font-size: 30px;
+    margin: 30px 0;
+}
+
+.title-bg {
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: 22px;
+}
+
+.title-md {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 18px;
+}
+
+.title-sm {
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: 16px;
+}
+
+.product-attributes .attribute-set .attribute-items {
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    gap: 5px;
+}
+
+.product-attributes .attribute-set .attribute-items .color-button-product {
+    min-width: 25px;
+    min-height: 25px;
+    border-radius: 5px;
+    margin-right: 3px;
+    border: 1px solid white;
+    outline: 2px solid transparent;
+    transition: all ease-in .3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2)
+}
+
+.product-attributes .attribute-set .attribute-items .color-button-cart {
+    min-width: 20px;
+    min-height: 20px;
+    border-radius: 5px;
+    margin-right: 2px;
+    border: 1px solid white;
+    outline: 2px solid transparent;
+    transition: all ease-in .3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2)
+}
+
+.product-attributes .attribute-set .attribute-items .color-selected {
+    outline: 2px solid var(--primary);
+}
+
+.product-attributes .attribute-set .attribute-items .attr-button-product {
+    border: 1px solid hsla(216, 8%, 12%, 1);
+    background-color: white;
+    min-width: 65px;
+    min-height: 45px;
+    margin-right: 5px;
+    font-weight: 500;
+    font-size: 14px;
+    transition: all ease-in .3s;
+}
+
+.product-attributes .attribute-set .attribute-items .attr-button-cart {
+    border: 1px solid hsla(216, 8%, 12%, 1);
+    background-color: white;
+    min-width: 25px;
+    min-height: 20px;
+    padding: 5px;
+    margin-right: 2px;
+    font-weight: 500;
+    font-size: 14px;
+    transition: all ease-in .3s;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.product-attributes .attribute-set .attribute-items .attr-selected {
+    background: hsla(216, 8%, 12%, 1);
+    color: white;
+}
+
+.product-attributes .product-price {
+    font-weight: 400;
+    font-size: 16px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+
+.product-details .place-order-button {
+    font-weight: 600;
+    font-size: 16px;
+    margin: 40px 0;
+    width: 100%;
+    height: 60px;
+    padding: 20px;
+    color: white;
+    text-align: center;
+    background-color: var(--primary);
+    border: none;
+    transition: all .3s ease-in-out;
+
+    &:hover {
+        background-color: var(--primary-hover);
+    }
+}

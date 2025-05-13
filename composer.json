@@ -3,7 +3,9 @@
     "autoload": {
         "psr-4": {
             "Src\\": "src/",
-            "App\\":"app/"
+            "App\\":"app/",
+            "Configration\\":"config/",
+            "Migration\\":"migrations/"
         }
     },
     "authors": [
@@ -14,6 +16,7 @@
     ],
     "require": {
         "symfony/var-dumper": "^7.2",
-        "vlucas/phpdotenv": "^5.6"
+        "vlucas/phpdotenv": "^5.6",
+        "webonyx/graphql-php": "^15.20"
     }
 }
