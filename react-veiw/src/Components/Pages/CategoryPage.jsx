@@ -17,7 +17,6 @@ export const CategoryPage = () => {
                 {
                     productsLoading ?
                         <div>
-                            loading ..
                         </div>
                         :
                         productsData["products"].filter((product) => product.category.name == selectedCategory || selectedCategory == "all").map(

@@ -10,11 +10,15 @@ const ProductDetails = () => {
     return (
         <div className='container'>
             <div className="details-container" data-testid={`product-${product.name.replace(/\s+/g, '-').toLowerCase()}`} >
-                <div className="product-images">
+                <div
+                    className="product-images"
+                    data-testid='product-gallery'
+                >
                     {product.gallery.map((image, index) =>
                         <img
                             style={{ border: currentIndex == index ? "2px solid var(--primary)" : "" }}
-                            width="120" height="100"
+                            width="120"
+                            height="100"
                             key={index} src={image} onClick={() => setCurrentIndex(index)} />
                     )}
                 </div>

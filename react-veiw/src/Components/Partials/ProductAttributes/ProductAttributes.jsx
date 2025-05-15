@@ -47,7 +47,6 @@ const ProductAttributes = ({
             updateCartItemAttribute(
                 cartItemId,
                 updatedSelectedAttributes,
-
             );
         }
     };
@@ -73,8 +72,15 @@ const ProductAttributes = ({
                 <div
                     key={attributeSet.id}
                     className="attribute-set"
-                    data-testid={`${isModalView ? 'cart-item' : 'product'
-                        }-attribute-${attributeSet.name.replace(/\s+/g, '-')}`}>
+                    data-testid={`
+                    ${isModalView ?
+                            'cart-item'
+                            :
+                            'product'
+                        }
+                        -attribute-
+                        ${attributeSet.name.replace(/\s+/g, '-')}`
+                    }>
 
                     <h3 className={`${isModalView ? "title-sm" : "title-md"}`}>{attributeSet.name}:</h3>
 
@@ -125,7 +131,7 @@ const ProductAttributes = ({
             {!isModalView && (
                 <>
                     <h3 className="title-md">Price:</h3>
-                    <div className="title-bg">
+                    <div className="title-bg gap">
                         {product.prices &&
                             product.prices.length > 0 &&
                             `${product.prices[0]?.amount}${product.prices[0]?.currency.symbol}`}
@@ -136,6 +142,9 @@ const ProductAttributes = ({
                 <button
                     className='place-order-button'
                     type="button"
+                    style={{
+                        backgroundColor: product.attributes.length !== selectedAttributes.length ? "var(--disabled-color)" : "var(--primary)",
+                    }}
                     onClick={() => addToCart(product, true, selectedAttributes)}
                     disabled={product.attributes.length !== selectedAttributes.length}
                     data-testid="add-to-cart">

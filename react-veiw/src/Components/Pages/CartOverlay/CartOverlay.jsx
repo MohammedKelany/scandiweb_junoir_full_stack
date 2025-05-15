@@ -11,7 +11,6 @@ const CartOverlay = () => {
     const overlayRef = useRef();
     const cartRef = useRef();
     const [addOrder, { loading: orderLoading, data: orderData, error: orderError }] = useMutation(ADD_ORDER)
-
     const closeOverlay = () => {
         overlayRef.current.style.display = "none";
         cartRef.current.style.display = "none";
@@ -22,51 +21,76 @@ const CartOverlay = () => {
             <div className='overlay-container overlay' ref={overlayRef} onClick={() => closeOverlay()}>
             </div>
             <div className='my-bag overlay' ref={cartRef}>
-                {
-                    cartItems.length == 0 ? <div>
-                        Please add some magnificent products first!  😊
-                    </div> : <>
-                        <div className='my-bag-text'>
-                            <span className='my-bag-title'>My Bag,</span>
-                            &nbsp;
-                            <span className='my-bag-quantity'>{cartItems.length} Item{cartItems.length == 1 ? "" : "s"}</span>
-                        </div>
-                        <div className='cart-product-list'>
-                            {
-                                cartItems.map((cartItem, index) => (
-                                    <div className='cart-product' key={index}>
-                                        <div className='cart-product-properties' >
-                                            <ProductAttributes
-                                                key={cartItem.id + JSON.stringify(cartItem.selectedAttributes)}
-                                                product={cartItem.product}
-                                                isModalView={true}
-                                                itemSelectedAttributes={cartItem.selectedAttributes}
-                                                cartItemId={cartItem.id}
-                                            />
-                                        </div>
-                                        <div className='cart-product-properties'>
-                                            <div className='cart-product-quantity'>
-                                                <button className='add-button' onClick={
+                {<>
+                    <div className='my-bag-text'>
+                        <span className='my-bag-title'>My Bag,</span>
+                        &nbsp;
+                        <span className='my-bag-quantity'>{cartItems.length} Item{cartItems.length == 1 ? "" : "s"}</span>
+                    </div>
+                    <div className='cart-product-list'>
+                        {
+                            cartItems.map((cartItem, index) => (
+                                <div className='cart-product' key={index}>
+                                    <div className='cart-product-properties' >
+                                        <ProductAttributes
+                                            key={cartItem.id + JSON.stringify(cartItem.selectedAttributes)}
+                                            product={cartItem.product}
+                                            isModalView={true}
+                                            itemSelectedAttributes={cartItem.selectedAttributes}
+                                            cartItemId={cartItem.id}
+                                        />
+                                    </div>
+                                    <div className='cart-product-properties'>
+                                        <div className='cart-product-quantity'>
+                                            <button
+                                                data-testid='cart-item-amount-increase'
+                                                className='add-button'
+                                                onClick={
                                                     () => updateCartItemQuantity(
                                                         cartItem.product.id,
                                                         cartItem.quantity,
                                                         "add", cartItem.id
                                                     )}>+</button>
-                                                <span className='quantity-text'>{cartItem.quantity}</span>
-                                                <button className='minus-button' onClick={() => updateCartItemQuantity(cartItem.product.id, cartItem.quantity, "minus", cartItem.id)}>-</button>
-                                            </div>
-                                            <div className='cart-product-image-container'>
-                                                <img className='cart-product-image' src={cartItem.product.gallery[0]} alt="Cart Image" />
-                                            </div>
+                                            <span
+                                                data-testid='cart-item-amount'
+                                                className='quantity-text'>
+                                                {cartItem.quantity}
+                                            </span>
+                                            <button
+                                                data-testid='cart-item-amount-decrease'
+                                                className='minus-button'
+                                                onClick={
+                                                    () => updateCartItemQuantity(
+                                                        cartItem.product.id, cartItem.quantity,
+                                                        "minus",
+                                                        cartItem.id
+                                                    )}>-</button>
+                                        </div>
+                                        <div className='cart-product-image-container'>
+                                            <img
+                                                className='cart-product-image'
+                                                src={cartItem.product.gallery[0]}
+                                                alt="Cart Image"
+                                            />
                                         </div>
                                     </div>
-                                ))}
+                                </div>
+                            ))}
+                    </div>
+                    <div className='total-price'>
+                        <h5>Total</h5>
+                        <div
+                            data-testid='cart-total'>
+                            <h5>{totalPrice}</h5>
+                            <h5> $</h5>
                         </div>
-                        <div className='total-price'>
-                            <h5>Total</h5>
-                            <h5>{totalPrice}$</h5>
-                        </div>
-                        <button onClick={
+                    </div>
+                    <button
+                        disabled={cartItems.length == 0}
+                        style={{
+                            backgroundColor: cartItems.length == 0 ? "var(--disabled-color)" : "var(--primary)"
+                        }}
+                        onClick={
                             () => cartItems.length > 0
                                 ?
                                 addOrder(
@@ -105,7 +129,7 @@ const CartOverlay = () => {
                                     position: "bottom-right",
                                 })
                         } className='cart-place-order-button'>Place Order</button>
-                    </>
+                </>
                 }
 
 

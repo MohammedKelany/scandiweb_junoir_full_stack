@@ -3,7 +3,6 @@
 namespace Src;
 
 use PDO;
-use  Migration;
 
 class Database
 {

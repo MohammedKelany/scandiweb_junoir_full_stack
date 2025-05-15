@@ -26,9 +26,8 @@ const Header = () => {
             <header className='container'>
                 <nav className='header-navs'>
                     {
-                        categoriesLoading ? <div>
-                            loading ...
-                        </div> :
+                        categoriesLoading
+                            ? <></> :
                             categoriesData["categories"].map((category) =>
                                 <NavLink
                                     data-testid={`${category.name == selectedCategory ? "" : "active-"}category-link`}
@@ -47,7 +46,6 @@ const Header = () => {
                             {cartItems.length}
                         </div>
                     }
-
                 </button>
             </header>
         </div>

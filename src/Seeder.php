@@ -2,12 +2,13 @@
 
 namespace Src;
 
+use Configration\Config;
 
 class Seeder extends Database
 {
     public static function getCategoryId($categoryName)
     {
-        $pdo = Application::$app->db->pdo;
+        $pdo = (new static((new Config())->DB_CONFIG))->pdo;
         $statement = $pdo->prepare("SELECT DISTINCT id from categories where name = :name ");
         $statement->bindValue("name", $categoryName);
         $statement->execute();

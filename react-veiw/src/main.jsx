@@ -4,9 +4,9 @@ import './index.css'
 import { RouterProvider } from 'react-router-dom'
 import router from './router'
 import { ContextProvider } from './contexts/ContextProvider'
-import { ApolloProvider, gql } from '@apollo/client';
-import { client } from './client/ApolloClient'
+import { ApolloProvider } from '@apollo/client'
 import { ToastContainer } from 'react-toastify'
+import { client } from './client/ApolloClient'
 
 
 

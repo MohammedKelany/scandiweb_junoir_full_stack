@@ -25,7 +25,6 @@ export const ContextProvider = ({ children }) => {
     // Save cart to localStorage and recalculate total on any change
     useEffect(() => {
         localStorage.setItem("cartItems", JSON.stringify(cartItems));
-
         const total = cartItems.reduce((acc, item) => {
             return acc + item.product.prices[0].amount * item.quantity;
         }, 0);

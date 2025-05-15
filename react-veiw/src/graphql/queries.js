@@ -8,7 +8,7 @@ export const GET_CATEGORIES = gql`
   }
 `;
 
-const getProductFields = gql`
+const getProductFields = `
     id
     name
     inStock

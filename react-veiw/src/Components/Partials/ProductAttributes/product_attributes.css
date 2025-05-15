@@ -86,6 +86,7 @@
     font-weight: 500;
     font-size: 14px;
     transition: all ease-in .3s;
+    cursor: pointer;
 
     &:hover {
         cursor: pointer;
@@ -117,8 +118,13 @@
     background-color: var(--primary);
     border: none;
     transition: all .3s ease-in-out;
+    cursor: pointer;
 
     &:hover {
         background-color: var(--primary-hover);
     }
+}
+
+.product-description {
+    margin-bottom: 30px;
 }
