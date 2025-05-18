@@ -12,6 +12,13 @@ services:
       - "8000:80"
     environment:
       - APP_ENV=development
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_DATABASE=scandiweb
+      - DB_USERNAME=scandiweb_user
+      - DB_PASSWORD=scandiweb_password
+    depends_on:
+      - mysql
     networks:
       - app-network
 
@@ -29,6 +36,23 @@ services:
     networks:
       - app-network
 
+  mysql:
+    image: mysql:8.0
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_DATABASE=scandiweb
+      - MYSQL_USER=scandiweb_user
+      - MYSQL_PASSWORD=scandiweb_password
+      - MYSQL_ROOT_PASSWORD=root_password
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - app-network
+
 networks:
   app-network:
-    driver: bridge 
+    driver: bridge
+
+volumes:
+  mysql_data: 
