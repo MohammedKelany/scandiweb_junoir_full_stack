@@ -32,7 +32,7 @@ RUN composer install
 COPY docker/apache/000-default.conf /etc/apache2/sites-available/000-default.conf
 
 # Enable Apache modules
-RUN a2enmod rewrite
+RUN a2enmod rewrite headers
 
 # Create storage directory and set permissions
 RUN mkdir -p storage \
