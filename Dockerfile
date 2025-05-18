@@ -34,9 +34,10 @@ COPY docker/apache/000-default.conf /etc/apache2/sites-available/000-default.con
 # Enable Apache modules
 RUN a2enmod rewrite
 
-# Set permissions
-RUN chown -R www-data:www-data /var/www/html \
-    && chmod -R 755 /var/www/html/storage
+# Create storage directory and set permissions
+RUN mkdir -p storage \
+    && chown -R www-data:www-data /var/www/html \
+    && chmod -R 755 storage
 
 EXPOSE 80
 
