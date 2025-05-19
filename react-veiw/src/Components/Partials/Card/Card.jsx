@@ -12,7 +12,7 @@ const Card = (props) => {
         <div className='product-card'>
             <Link
                 style={{ opacity: props.product.inStock ? 1 : .7 }}
-                data-testid={`product-${props.product.name.replace(/\s+/g, '-')}`}
+                data-testid={`product-${props.product.name.toLowerCase().replace(/\s+/g, '-')}`}
                 className='product-link' to={`/details/${props.product.id}`}
                 state={{ product: props.product }
                 }>
