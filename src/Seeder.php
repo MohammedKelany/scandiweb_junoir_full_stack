@@ -59,8 +59,6 @@ class Seeder extends Database
                 'category_id' => self::getCategoryId($product["category"]),
             ]);
 
-
-
             $setStmt = $pdo->prepare("INSERT INTO attribute_sets (name, type, product_id) VALUES (:name, :type,:product_id)");
             foreach ($product['attributes'] as $attribute) {
                 // 4. Insert attribute set
@@ -80,7 +78,6 @@ class Seeder extends Database
                     ]);
                 }
             }
-
 
             // 6. Insert prices
             $priceStmt = $pdo->prepare("

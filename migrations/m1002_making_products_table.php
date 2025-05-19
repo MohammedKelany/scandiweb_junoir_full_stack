@@ -17,7 +17,6 @@ class m1002_making_products_table implements MigrationInterface
                 description TEXT NOT NULL,
                 brand VARCHAR(255) NOT NULL,
                 category_id INT NOT NULL,
-                attribute_set_id INT NOT NULL,
                 FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE CASCADE
             ) ENGINE= INNODB;";
 
