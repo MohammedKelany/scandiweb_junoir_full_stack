@@ -1,11 +1,13 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
-const StateContext = createContext({
+export const StateContext = createContext({
     productsData: [],
     cartItems: [],
     selectedCategory: "all",
     totalPrice: 0,
+    cartOverlayOpen: false,
+    setCartOverlayOpen: () => { },
     setProductsData: () => { },
     setSelectedCategory: () => { },
     addToCart: () => { },
@@ -21,6 +23,7 @@ export const ContextProvider = ({ children }) => {
     });
     const [selectedCategory, setSelectedCategory] = useState("all");
     const [totalPrice, setTotalPrice] = useState(0);
+    const [cartOverlayOpen, setCartOverlayOpen] = useState(false);
 
     // Save cart to localStorage and recalculate total on any change
     useEffect(() => {
@@ -76,6 +79,8 @@ export const ContextProvider = ({ children }) => {
         }
 
         setCartItems(newCart);
+        setCartOverlayOpen(true);
+        document.body.style.overflow = 'hidden';
         toast.success("Item added to cart! 🛒", {
             closeOnClick: true,
         });
@@ -142,21 +147,23 @@ export const ContextProvider = ({ children }) => {
         localStorage.removeItem("cartItems");
     };
 
+    const contextValue = {
+        productsData,
+        cartItems,
+        selectedCategory,
+        totalPrice,
+        cartOverlayOpen,
+        setCartOverlayOpen,
+        setProductsData,
+        setSelectedCategory,
+        addToCart,
+        updateCartItemQuantity,
+        updateCartItemAttribute,
+        emptyCart,
+    };
+
     return (
-        <StateContext.Provider
-            value={{
-                productsData,
-                cartItems,
-                selectedCategory,
-                totalPrice,
-                setProductsData,
-                setSelectedCategory,
-                addToCart,
-                updateCartItemQuantity,
-                updateCartItemAttribute,
-                emptyCart,
-            }}
-        >
+        <StateContext.Provider value={contextValue}>
             {children}
         </StateContext.Provider>
     );

@@ -6,7 +6,7 @@ import { GET_PRODUCTS } from "../../graphql/queries";
 
 export const CategoryPage = () => {
     const { selectedCategory } = useStateContext();
-    const { loading: productsLoading, data: productsData, error: productsError } = useQuery(GET_PRODUCTS);
+    const { loading: productsLoading, data: productsData } = useQuery(GET_PRODUCTS);
     // console.log(productsData);
     return (
         <div className='container'>

@@ -5,52 +5,90 @@ import { useQuery } from "@apollo/client"
 import { useStateContext } from '../../../contexts/ContextProvider'
 import { GET_CATEGORIES } from '../../../graphql/queries'
 import "./header.css"
+import { useCallback, useMemo } from 'react'
 
 const Header = () => {
-    const { selectedCategory, setSelectedCategory, cartItems } = useStateContext();
+    const { selectedCategory, setSelectedCategory, cartItems, cartOverlayOpen, setCartOverlayOpen } = useStateContext();
     const { loading: categoriesLoading, data: categoriesData } = useQuery(GET_CATEGORIES);
 
-    const onCartIconClick = () => {
-        const overlay = document.querySelectorAll(".overlay");
-        overlay.forEach((element) => {
-            if (element.style.display === "none" || element.style.display === "") {
-                element.style.display = "flex";
-            } else {
-                element.style.display = "none";
-            }
-        });
-    }
-    return (
-        <div className="header">
-            <header className='container'>
-                <nav className='header-navs'>
-                    {
-                        categoriesLoading
-                            ? <></> :
-                            categoriesData["categories"].map((category) =>
-                                <NavLink
-                                    key={category.name}
-                                    data-testid={`${category.name == selectedCategory ? "active-" : ""}category-link`}
-                                    to={`/${category.name}`} className={() =>
-                                        (category.name == selectedCategory ? "header-navs-active" : "header-navs")
-                                    }
-                                    onClick={() => setSelectedCategory(category.name)}>
-                                    {category.name}
-                                </NavLink>
-                            )}
-                </nav>
-                <img src={logoImg} className='header-logo' alt='LOGO' />
-                <button data-testid='cart-btn' className='cart' onClick={() => onCartIconClick()}>
-                    <img src={cartIcon} className='cart-icon' alt='Cart Icon' />
-                    {
-                        cartItems.length > 0 && <div className='cart-number'>
-                            {cartItems.length}
-                        </div>
-                    }
-                </button>
-            </header>
-        </div>
+    const onCartIconClick = useCallback(() => {
+        setCartOverlayOpen(!cartOverlayOpen);
+        document.body.style.overflow = !cartOverlayOpen ? 'hidden' : '';
+    }, [cartOverlayOpen, setCartOverlayOpen]);
 
+    // Memoize categories to prevent unnecessary re-renders
+    const categories = useMemo(() => {
+        if (categoriesLoading || !categoriesData?.categories) return [];
+        return categoriesData.categories.map((category) => (
+            <NavLink
+                key={category.name}
+                data-testid={`${category.name === selectedCategory ? "active-" : ""}category-link`}
+                to={`/${category.name}`}
+                className={({ isActive }) =>
+                    `header-nav-link ${isActive ? "header-navs-active" : ""}`
+                }
+                onClick={() => setSelectedCategory(category.name)}
+                aria-current={category.name === selectedCategory ? "page" : undefined}>
+                {category.name}
+            </NavLink>
+        ));
+    }, [categoriesLoading, categoriesData, selectedCategory, setSelectedCategory]);
+
+    // Memoize cart badge to prevent unnecessary re-renders
+    const cartBadge = useMemo(() => {
+        if (cartItems.length === 0) return null;
+        return (
+            <div
+                className='cart-number'
+                role="status"
+                aria-label={`${cartItems.length} items in cart`}>
+                {cartItems.length}
+            </div>
+        );
+    }, [cartItems.length]);
+
+    return (
+        <header className="header" role="banner">
+            <div className='container header-container'>
+                <nav className='header-navs' role="navigation" aria-label="Main navigation">
+                    {categoriesLoading ? (
+                        <div className="header-nav-loading" aria-hidden="true">
+                            Loading categories...
+                        </div>
+                    ) : (
+                        categories
+                    )}
+                </nav>
+                <div className="header-logo-container">
+                    <NavLink to="/" aria-label="Home">
+                        <img
+                            src={logoImg}
+                            className='header-logo'
+                            alt='Scandiweb Logo'
+                            width="41"
+                            height="41"
+                            loading="eager"
+                        />
+                    </NavLink>
+                </div>
+                <button
+                    data-testid='cart-btn'
+                    className='cart-button'
+                    onClick={onCartIconClick}
+                    aria-label="Open shopping cart"
+                    aria-expanded={cartOverlayOpen}>
+                    <img
+                        src={cartIcon}
+                        className='cart-icon'
+                        alt=''
+                        width="20"
+                        height="20"
+                        loading="eager"
+                    />
+                    {cartBadge}
+                </button>
+            </div>
+        </header>
     )
 }
 
