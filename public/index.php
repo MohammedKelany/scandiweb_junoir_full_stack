@@ -66,6 +66,7 @@ function cors()
         header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With");
     }
 
+
     if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
         header('Access-Control-Max-Age: 86400'); // 24 hours cache
         exit(0);
