@@ -17,6 +17,7 @@
 .cart-overlay.hidden {
     opacity: 0;
     pointer-events: none;
+    visibility: hidden;
 }
 
 .my-bag {
@@ -44,6 +45,7 @@
     transform: translateX(100%);
     opacity: 0;
     pointer-events: none;
+    visibility: hidden;
 }
 
 .my-bag::-webkit-scrollbar {
