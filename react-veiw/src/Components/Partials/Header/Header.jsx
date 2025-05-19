@@ -7,8 +7,7 @@ import { GET_CATEGORIES } from '../../../graphql/queries'
 import "./header.css"
 
 const Header = () => {
-    const { selectedCategory } = useStateContext();
-    const { setSelectedCategory, cartItems } = useStateContext();
+    const { selectedCategory, setSelectedCategory, cartItems } = useStateContext();
     const { loading: categoriesLoading, data: categoriesData } = useQuery(GET_CATEGORIES);
 
     const onCartIconClick = () => {

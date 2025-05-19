@@ -18,7 +18,12 @@ const CartOverlay = () => {
 
     return (
         <>
-            <div className='overlay-container overlay' ref={overlayRef} onClick={() => closeOverlay()}>
+            <div
+                data-testid="cart-overlay"
+                className='cart-overlay overlay'
+                ref={overlayRef}
+                onClick={() => closeOverlay()}
+            >
             </div>
             <div className='my-bag overlay' ref={cartRef}>
                 {<>
