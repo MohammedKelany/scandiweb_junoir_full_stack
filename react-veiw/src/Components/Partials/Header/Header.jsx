@@ -9,7 +9,7 @@ import "./header.css"
 const Header = () => {
     const { selectedCategory } = useStateContext();
     const { setSelectedCategory, cartItems } = useStateContext();
-    const { loading: categoriesLoading, data: categoriesData, error: categoriesError } = useQuery(GET_CATEGORIES);
+    const { loading: categoriesLoading, data: categoriesData } = useQuery(GET_CATEGORIES);
 
     const onCartIconClick = () => {
         const overlay = document.querySelectorAll(".overlay");
@@ -30,10 +30,12 @@ const Header = () => {
                             ? <></> :
                             categoriesData["categories"].map((category) =>
                                 <NavLink
-                                    data-testid={`${category.name == selectedCategory ? "" : "active-"}category-link`}
-                                    to={`/`} className={() =>
+                                    key={category.name}
+                                    data-testid={`${category.name == selectedCategory ? "active-" : ""}category-link`}
+                                    to={`/${category.name}`} className={() =>
                                         (category.name == selectedCategory ? "header-navs-active" : "header-navs")
-                                    } key={category.name} onClick={() => setSelectedCategory(category.name)}>
+                                    }
+                                    onClick={() => setSelectedCategory(category.name)}>
                                     {category.name}
                                 </NavLink>
                             )}

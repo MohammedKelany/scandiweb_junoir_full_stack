@@ -53,7 +53,7 @@ function cors()
     // Allow requests from your frontend domain
     $allowedOrigins = [
         'https://scandiweb-test.free.nf',
-        'http://localhost:5173', // For local development
+        'http://localhost:3000', // For local development
     ];
 
     $origin = $_SERVER['HTTP_ORIGIN'] ?? '';

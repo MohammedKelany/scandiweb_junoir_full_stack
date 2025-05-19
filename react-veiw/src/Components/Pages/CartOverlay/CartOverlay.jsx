@@ -10,7 +10,7 @@ const CartOverlay = () => {
     const { updateCartItemQuantity, cartItems, emptyCart, totalPrice } = useStateContext()
     const overlayRef = useRef();
     const cartRef = useRef();
-    const [addOrder, { loading: orderLoading, data: orderData, error: orderError }] = useMutation(ADD_ORDER)
+    const [addOrder] = useMutation(ADD_ORDER)
     const closeOverlay = () => {
         overlayRef.current.style.display = "none";
         cartRef.current.style.display = "none";
