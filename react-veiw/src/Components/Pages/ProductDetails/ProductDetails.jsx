@@ -9,7 +9,8 @@ const ProductDetails = () => {
     const product = state.product;
     return (
         <div className='container'>
-            <div className="details-container" data-testid={`product-${product.name.replace(/\s+/g, '-').toLowerCase()}`} >
+            <div className="details-container"
+                data-testid={`product-${product.name.replace(/\s+/g, '-').toLowerCase()}`} >
                 <div
                     className="product-images"
                     data-testid='product-gallery'

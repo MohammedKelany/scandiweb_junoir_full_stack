@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useStateContext } from '../../../contexts/ContextProvider';
 import SafeHtmlParser from '../../../parser/parser';
@@ -10,7 +10,7 @@ const ProductAttributes = ({
     itemSelectedAttributes = [],
     cartItemId = null,
 }) => {
-    const { addToCart, updateCartItemAttribute, cartItems } = useStateContext();
+    const { addToCart, updateCartItemAttribute } = useStateContext();
     const [selectedAttributes, setSelectedAttributes] = useState(
         itemSelectedAttributes
     );
@@ -72,14 +72,7 @@ const ProductAttributes = ({
                 <div
                     key={attributeSet.id}
                     className="attribute-set"
-                    data-testid={`
-                    ${isModalView ?
-                            'cart-item'
-                            :
-                            'product'
-                        }
-                        -attribute-
-                        ${attributeSet.name.replace(/\s+/g, '-')}`
+                    data-testid={`${isModalView ? 'cart-item' : 'product'}-attribute-${attributeSet.name.replace(/\s+/g, '-').toLowerCase()}`
                     }>
 
                     <h3 className={`${isModalView ? "title-sm" : "title-md"}`}>{attributeSet.name}:</h3>
@@ -97,7 +90,7 @@ const ProductAttributes = ({
                                     onClick={() => handleAttributeClick(attribute)}
                                     disabled={!product.inStock}
                                     data-testid={`${isModalView ? 'cart-item' : 'product'
-                                        }-attribute-${attributeSet.name.replace(/\s+/g, '-')}-${isModalView
+                                        }-attribute-${attributeSet.name.replace(/\s+/g, '-').toLowerCase()}-${isModalView
                                             ? attribute.displayValue.replace(/\s+/g, '-')
                                             : attribute.value
                                         }${isAttributeValueSelected(attribute) && isModalView
@@ -117,7 +110,7 @@ const ProductAttributes = ({
                                         }-attribute-${attributeSet.name.replace(
                                             /\s+/g,
                                             '-'
-                                        )}-${attribute.displayValue.replace(/\s+/g, '-')}${isAttributeValueSelected(attribute) ? '-selected' : ''
+                                        ).toLowerCase()}-${attribute.displayValue.replace(/\s+/g, '-')}${isAttributeValueSelected(attribute) ? '-selected' : ''
                                         }`}
                                 >
                                     {attribute.displayValue}
