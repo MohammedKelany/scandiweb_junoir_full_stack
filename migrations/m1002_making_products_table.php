@@ -12,7 +12,7 @@ class m1002_making_products_table implements MigrationInterface
             products (
                 id VARCHAR(50) PRIMARY KEY,
                 name VARCHAR(255) NOT NULL,
-                inStock BOOLEAN NOT NULL DEFAULT TRUE,
+                inStock TINYINT NOT NULL DEFAULT 1,
                 gallery TEXT NOT NULL, -- JSON array of image URLs
                 description TEXT NOT NULL,
                 brand VARCHAR(255) NOT NULL,
