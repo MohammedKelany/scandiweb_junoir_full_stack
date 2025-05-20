@@ -1,6 +1,6 @@
 import { Navigate, createBrowserRouter } from 'react-router-dom'
 import { Layout } from './Components/Layout/Layout';
-import { CategoryPage } from './Components/Pages/CategoryPage';
+import { CategoryPage } from './Components/Pages/CategoryPage/CategoryPage';
 import ProductDetails from './Components/Pages/ProductDetails/ProductDetails';
 
 
