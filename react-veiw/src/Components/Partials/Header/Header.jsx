@@ -61,7 +61,6 @@ const Header = () => {
                 <nav className='header-navs' role="navigation" aria-label="Main navigation">
                     {categoriesLoading ? (
                         <div className="header-nav-loading" aria-hidden="true">
-                            Loading categories...
                         </div>
                     ) : (
                         categories
