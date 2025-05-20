@@ -5,16 +5,20 @@ import { useQuery } from "@apollo/client"
 import { useStateContext } from '../../../contexts/ContextProvider'
 import { GET_CATEGORIES } from '../../../graphql/queries'
 import "./header.css"
-import { useCallback, useMemo } from 'react'
+import { useCallback, useEffect, useMemo } from 'react'
 
 const Header = () => {
     const { selectedCategory, setSelectedCategory, cartItems, cartOverlayOpen, setCartOverlayOpen } = useStateContext();
     const { loading: categoriesLoading, data: categoriesData } = useQuery(GET_CATEGORIES);
 
+    // Get the category name from the URL On reload
     const { categoryName } = useParams();
-    if (categoryName) {
-        setSelectedCategory(categoryName);
-    }
+    useEffect(() => {
+        if (categoryName) {
+            setSelectedCategory(categoryName);
+        }
+    }, []);
+
     const onCartIconClick = useCallback(() => {
         setCartOverlayOpen(!cartOverlayOpen);
         document.body.style.overflow = !cartOverlayOpen ? 'hidden' : '';
