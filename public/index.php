@@ -8,6 +8,7 @@ use App\Controller\GraphqlController;
 include_once __DIR__ . "/../src/support/helpers.php";
 include_once base_path() . "vendor/autoload.php";
 
+// Enable CORS
 cors();
 
 // Load .env variables
@@ -27,7 +28,11 @@ $routeInfo = $dispatcher->dispatch(
 
 switch ($routeInfo[0]) {
     case Dispatcher::NOT_FOUND:
-        require(base_path() . 'public/index.html');
+        http_response_code(404);
+        echo json_encode([
+            "error" => "404 Method is not exist",
+            "message" => "The route you're trying to access is not exist!"
+        ]);
         break;
 
     case Dispatcher::METHOD_NOT_ALLOWED:
