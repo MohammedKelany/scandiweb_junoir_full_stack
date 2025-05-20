@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink, useParams } from 'react-router-dom'
 import logoImg from "./../../../assets/logo.png"
 import cartIcon from "./../../../assets/cart.png"
 import { useQuery } from "@apollo/client"
@@ -11,6 +11,10 @@ const Header = () => {
     const { selectedCategory, setSelectedCategory, cartItems, cartOverlayOpen, setCartOverlayOpen } = useStateContext();
     const { loading: categoriesLoading, data: categoriesData } = useQuery(GET_CATEGORIES);
 
+    const { categoryName } = useParams();
+    if (categoryName) {
+        setSelectedCategory(categoryName);
+    }
     const onCartIconClick = useCallback(() => {
         setCartOverlayOpen(!cartOverlayOpen);
         document.body.style.overflow = !cartOverlayOpen ? 'hidden' : '';
@@ -25,7 +29,7 @@ const Header = () => {
                 data-testid={`${category.name === selectedCategory ? "active-" : ""}category-link`}
                 to={`/${category.name}`}
                 className={({ isActive }) =>
-                    `header-nav-link ${isActive ? "header-navs-active" : ""}`
+                    `header-nav-link ${isActive || category.name === selectedCategory ? "header-navs-active" : ""}`
                 }
                 onClick={() => setSelectedCategory(category.name)}
                 aria-current={category.name === selectedCategory ? "page" : undefined}>

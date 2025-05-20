@@ -14,7 +14,7 @@ const router = createBrowserRouter([
                 element: <CategoryPage />,
                 children: [
                     {
-                        path: "/:category",
+                        path: "/:categoryName",
                         element: <CategoryPage />,
                     }
                 ]

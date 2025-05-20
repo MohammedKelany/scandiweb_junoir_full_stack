@@ -27,7 +27,6 @@ $routeInfo = $dispatcher->dispatch(
 
 switch ($routeInfo[0]) {
     case Dispatcher::NOT_FOUND:
-
         require(base_path() . 'public/index.html');
         break;
 
