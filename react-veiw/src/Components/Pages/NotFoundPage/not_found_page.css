@@ -27,6 +27,7 @@
     margin: 0;
     line-height: 1;
     background: linear-gradient(45deg, var(--primary), var(--primary-hover));
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     text-shadow: 2px 2px 4px rgba(94, 206, 123, 0.1);
