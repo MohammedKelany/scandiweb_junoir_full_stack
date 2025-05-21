@@ -53,10 +53,31 @@
     color: var(--second-color);
 }
 
+@media (max-width: 678px) {
+    .product-link .product-img {
+        height: 170px;
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 950px) {
+    .product-link .product-img {
+        height: 200px;
+        font-size: 20px;
+    }
+}
+
 .product-link .product-title {
     font-weight: 400;
     font-size: 18px;
     margin: 30px 0 0 0;
+}
+
+@media (max-width: 678px) {
+    .product-link .product-title {
+        font-size: 16px;
+        margin: 20px 0 0 0;
+    }
 }
 
 .product-link .product-price {

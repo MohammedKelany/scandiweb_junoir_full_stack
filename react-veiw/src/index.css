@@ -47,17 +47,3 @@
 .page-content {
   margin-top: 120px;
 }
-
-.category-title {
-  font-family: Raleway;
-  font-weight: 400;
-  font-size: 42px;
-  line-height: 160%;
-}
-
-.products-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: 30px;
-  padding-bottom: 30px;
-}
