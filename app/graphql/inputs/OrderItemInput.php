@@ -1,8 +1,10 @@
 <?php
 
-namespace App\graphql\inputs;
+declare(strict_types=1);
 
-use App\graphql\GraphQLTypes;
+namespace App\GraphQL\Inputs;
+
+use App\GraphQL\GraphQLTypes;
 use GraphQL\Type\Definition\InputObjectType;
 use GraphQL\Type\Definition\Type;
 

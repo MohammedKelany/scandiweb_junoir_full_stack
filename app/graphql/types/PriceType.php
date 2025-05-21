@@ -1,14 +1,19 @@
 <?php
 
-namespace App\graphql\types;
+declare(strict_types=1);
 
-use App\graphql\GraphQLTypes;
+namespace App\GraphQL\Types;
+
+use App\GraphQL\GraphQLTypes;
 use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\Type;
 use PDO;
 
 class PriceType extends ObjectType
 {
+    /**
+     * PriceType constructor.
+     */
     public function __construct()
     {
         $config = [

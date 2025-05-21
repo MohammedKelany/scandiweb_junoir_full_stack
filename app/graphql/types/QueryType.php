@@ -1,17 +1,24 @@
 <?php
 
-namespace App\graphql\types;
+declare(strict_types=1);
 
-use App\graphql\GraphQLTypes;
-use App\models\CategoryModel;
-use App\models\OrderModel;
-use App\models\ProductModel;
+namespace App\GraphQL\Types;
+
+use App\GraphQL\GraphQLTypes;
+use App\Models\CategoryModel;
+use App\Models\OrderModel;
+use App\Models\ProductModel;
 use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\Type;
 
 class QueryType
 {
-    public static function handleQueryType()
+    /**
+     * Returns an ObjectType (GraphQL Query) for the schema.
+     *
+     * @return ObjectType
+     */
+    public static function handleQueryType(): ObjectType
     {
         return new ObjectType([
             'name' => 'Query',

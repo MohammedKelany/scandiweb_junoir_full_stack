@@ -1,15 +1,22 @@
 <?php
 
-namespace App\graphql\types;
+declare(strict_types=1);
 
-use App\graphql\GraphQLTypes;
-use App\models\OrderModel;
+namespace App\GraphQL\Types;
+
+use App\GraphQL\GraphQLTypes;
+use App\Models\OrderModel;
 use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\Type;
 
 class MutationType
 {
-    public static function handleMutationType()
+    /**
+     * Returns an ObjectType (GraphQL Mutation) for the schema.
+     *
+     * @return ObjectType
+     */
+    public static function handleMutationType(): ObjectType
     {
         return new ObjectType([
             'name' => 'Mutation',

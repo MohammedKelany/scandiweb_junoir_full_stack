@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller;
 
-use App\graphql\types\MutationType;
-use App\graphql\types\QueryType;
+use App\GraphQL\Types\MutationType;
+use App\GraphQL\Types\QueryType;
 use Configration\Config;
 use GraphQL\Type\Schema;
 use GraphQL\Type\SchemaConfig;
@@ -14,9 +16,14 @@ use Src\Application;
 use Src\Controller;
 use Throwable;
 
-class GraphqlController extends Controller
+class GraphQLController extends Controller
 {
-    public static function handle()
+    /**
+     * Handle GraphQL requests
+     *
+     * @return never
+     */
+    public static function handle(): never
     {
         try {
             Application::$app = new Application((new Config)->DB_CONFIG);

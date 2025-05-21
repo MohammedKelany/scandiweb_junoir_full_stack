@@ -1,16 +1,21 @@
 <?php
 
-namespace App\graphql\types;
+declare(strict_types=1);
 
-use App\graphql\GraphQLTypes;
-use App\models\AttributeSetModel;
-use App\models\CategoryModel;
-use App\models\PriceModel;
+namespace App\GraphQL\Types;
+
+use App\GraphQL\GraphQLTypes;
+use App\Models\AttributeSetModel;
+use App\Models\CategoryModel;
+use App\Models\PriceModel;
 use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\Type;
 
 class ProductType extends ObjectType
 {
+    /**
+     * ProductType constructor.
+     */
     public function __construct()
     {
         $config = [

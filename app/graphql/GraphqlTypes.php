@@ -1,19 +1,21 @@
 <?php
 
-namespace App\graphql;
+declare(strict_types=1);
 
-use App\graphql\inputs\AttributeInput;
-use App\graphql\inputs\AttributeSetInput;
-use App\graphql\inputs\OrderInput;
-use App\graphql\inputs\OrderItemInput;
-use App\graphql\types\AttributeSetType;
-use App\graphql\types\AttributeType;
-use App\graphql\types\CategoryType;
-use App\graphql\types\CurrencyType;
-use App\graphql\types\OrderItemType;
-use App\graphql\types\PriceType;
-use App\graphql\types\ProductType;
-use App\graphql\types\OrderType;
+namespace App\GraphQL;
+
+use App\GraphQL\Inputs\AttributeInput;
+use App\GraphQL\Inputs\AttributeSetInput;
+use App\GraphQL\Inputs\OrderInput;
+use App\GraphQL\Inputs\OrderItemInput;
+use App\GraphQL\Types\AttributeSetType;
+use App\GraphQL\Types\AttributeType;
+use App\GraphQL\Types\CategoryType;
+use App\GraphQL\Types\CurrencyType;
+use App\GraphQL\Types\OrderItemType;
+use App\GraphQL\Types\OrderType;
+use App\GraphQL\Types\PriceType;
+use App\GraphQL\Types\ProductType;
 
 class GraphQLTypes
 {
@@ -30,55 +32,122 @@ class GraphQLTypes
     private static $attributeSetInput;
     private static $attributeInput;
 
-
-    public static function category()
+    /**
+     * Returns the CategoryType instance (singleton).
+     *
+     * @return CategoryType
+     */
+    public static function category(): CategoryType
     {
         return self::$category ??= new CategoryType();
     }
 
-    public static function product()
+    /**
+     * Returns the ProductType instance (singleton).
+     *
+     * @return ProductType
+     */
+    public static function product(): ProductType
     {
         return self::$product ??= new ProductType();
     }
-    public static function price()
+
+    /**
+     * Returns the PriceType instance (singleton).
+     *
+     * @return PriceType
+     */
+    public static function price(): PriceType
     {
         return self::$price ??= new PriceType();
     }
 
-    public static function attribute()
+    /**
+     * Returns the AttributeType instance (singleton).
+     *
+     * @return AttributeType
+     */
+    public static function attribute(): AttributeType
     {
         return self::$attribute ??= new AttributeType();
     }
-    public static function attributeSet()
+
+    /**
+     * Returns the AttributeSetType instance (singleton).
+     *
+     * @return AttributeSetType
+     */
+    public static function attributeSet(): AttributeSetType
     {
         return self::$attributeSet ??= new AttributeSetType();
     }
 
-    public static function currency()
+    /**
+     * Returns the CurrencyType instance (singleton).
+     *
+     * @return CurrencyType
+     */
+    public static function currency(): CurrencyType
     {
         return self::$currency ??= new CurrencyType();
     }
-    public static function order()
+
+    /**
+     * Returns the OrderType instance (singleton).
+     *
+     * @return OrderType
+     */
+    public static function order(): OrderType
     {
         return self::$order ??= new OrderType();
     }
-    public static function orderItem()
+
+    /**
+     * Returns the OrderItemType instance (singleton).
+     *
+     * @return OrderItemType
+     */
+    public static function orderItem(): OrderItemType
     {
         return self::$orderItem ??= new OrderItemType();
     }
-    public static function orderInput()
+
+    /**
+     * Returns the OrderInput instance (singleton).
+     *
+     * @return OrderInput
+     */
+    public static function orderInput(): OrderInput
     {
         return self::$orderInput ??= new OrderInput();
     }
-    public static function orderItemInput()
+
+    /**
+     * Returns the OrderItemInput instance (singleton).
+     *
+     * @return OrderItemInput
+     */
+    public static function orderItemInput(): OrderItemInput
     {
         return self::$orderItemInput ??= new OrderItemInput();
     }
-    public static function attributeSetInput()
+
+    /**
+     * Returns the AttributeSetInput instance (singleton).
+     *
+     * @return AttributeSetInput
+     */
+    public static function attributeSetInput(): AttributeSetInput
     {
         return self::$attributeSetInput ??= new AttributeSetInput();
     }
-    public static function attributeInput()
+
+    /**
+     * Returns the AttributeInput instance (singleton).
+     *
+     * @return AttributeInput
+     */
+    public static function attributeInput(): AttributeInput
     {
         return self::$attributeInput ??= new AttributeInput();
     }

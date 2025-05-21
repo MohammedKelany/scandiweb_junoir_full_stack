@@ -1,12 +1,17 @@
 <?php
 
-namespace App\graphql\types;
+declare(strict_types=1);
+
+namespace App\GraphQL\Types;
 
 use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\Type;
 
 class AttributeType extends ObjectType
 {
+    /**
+     * AttributeType constructor.
+     */
     public function __construct()
     {
         $config = [
